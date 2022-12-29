@@ -3,6 +3,11 @@
 	"version": "1.0.0",
 	"main": "index.js",
 	"license": "MIT",
+	"scripts": {	
+		"start": "node index.js",
+		"dev": "nodemon index.js",
+		"migrate": "npx sequelize db:migrate"
+	},
 	"dependencies": {
 		"cross-env": "^7.0.3",
 		"dotenv": "^16.0.3",
@@ -40,9 +45,6 @@
 		"nodemon": "^2.0.20",
 		"prettier": "2.8.1",
 		"sequelize-cli": "^6.5.2"
-	},
-	"scripts": {
-		"prepare": "husky install"
 	},
 	"lint-staged": {
 		"/api/v1*": "prettier --write --ignore-unknown"
