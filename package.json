@@ -31,7 +31,19 @@
 		"xlsx": "^0.18.5"
 	},
 	"devDependencies": {
+		"@babel/core": "^7.20.7",
+		"eslint": "^8.30.0",
+		"eslint-config-prettier": "^8.5.0",
+		"husky": "^8.0.2",
+		"lint-staged": "^13.1.0",
 		"nodemon": "^2.0.20",
+		"prettier": "2.8.1",
 		"sequelize-cli": "^6.5.2"
+	},
+	"scripts": {
+		"prepare": "husky install"
+	},
+	"lint-staged": {
+		"/api/v1*": "prettier --write --ignore-unknown"
 	}
 }

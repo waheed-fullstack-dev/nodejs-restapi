@@ -3,22 +3,25 @@ module.exports = {
 		browser: true,
 		es2021: true,
 		node: true,
-		jest: true
+		jest: true,
+		mocha: true
 	},
-	extends: 'eslint:recommended',
+	extends: ['eslint:recommended', 'plugin:prettier/recommended'],
 	overrides: [],
+	parser: 'esprima',
 	parserOptions: {
 		ecmaVersion: 'latest',
 		sourceType: 'module',
+		ecmaFeatures: {
+            jsx: true
+        }
 	},
 	rules: {
+		eqeqeq: true,
 		indent: ['error', 4],
-		'linebreak-style': ['error', 'unix'],
+		curly: 'error',
 		quotes: ['error', 'double'],
-		semi: ['error', 'always'],
-		'no-empty': 'warn',
-		'no-cond-assign': ['error', 'always'],
-		'for-direction': 'off',
+		semi: 'error'
 	},
 
 	settings: {

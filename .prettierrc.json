@@ -1,0 +1,25 @@
+{
+    "trailingComma": "all",
+    "tabWidth": 4,
+    "useTabs": true,
+    "indentation": "tab",
+    "keybindings": [
+        {
+            "key": "ctrl+tab",
+            "mac": "cmd+tab",   
+            "command": "editor.action.triggerParameterHints"
+        },
+        {
+            "key": "ctrl+shift+tab",
+            "mac": "cmd+shift+tab",
+            "command": "editor.action.triggerParameterHints"
+        }
+    ],
+    "semi": true,
+    "singleQuote": true,
+    "bracketSpacing": true,
+    "arrowParens": "always",
+    "parser": "babel-ts",
+    "requirePragma": true
+}
+  
