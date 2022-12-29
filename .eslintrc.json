@@ -1,0 +1,27 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true,
+        "mocha": true
+    },
+    "extends": "airbnb-base",
+    "overrides": [
+    ],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "rules": {
+        "block-space": "always",
+        "arrow-spacing": {
+            "after": true,
+            "before": true
+        },
+        "comma-dangle": ["error", "never"],
+        "indent": ["error", "tab"]
+    },
+    "settings": {
+        "import/parser": "babel-eslint"
+    }
+}
