@@ -1,0 +1,332 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0",
+      "title": "Boilerplate RestApi",
+      "description": "A collection of API endpoints built for the Boilerplate API",
+      "license": {
+        "name": "MIT",
+        "url": "http://github.com/gruntjs/grunt/blob/master/LICENSE-MIT"
+      }
+    },
+    "host": "localhost:3090",
+    "basePath": "/api/v1",
+    "schemes": [
+      "http"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+      "/auth/login": {
+        "post": {
+          "description": "TODO: Add Description",
+          "summary": "Client Login",
+          "tags": [
+            "Authorization"
+          ],
+          "operationId": "Client Login",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "Body",
+              "in": "body",
+              "required": true,
+              "description": "",
+              "schema": {
+                "$ref": "#/definitions/ClientLoginRequest"
+              }
+            },
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "required": true,
+              "type": "string",
+              "description": ""
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": ""
+            }
+          },
+          "security": [],
+          "x-unitTests": [
+            {
+              "request": {
+                "method": "POST",
+                "uri": "/accounts/login",
+                "headers": {
+                  "Content-Type": "application/json"
+                },
+                "body": {"email": "john.smith@gmail.com", "password": "Abc123"}
+              },
+              "expectedResponse": {
+                "x-allowExtraHeaders": true,
+                "x-bodyMatchMode": "NONE",
+                "x-arrayOrderedMatching": false,
+                "x-arrayCheckCount": false,
+                "x-matchResponseSchema": true,
+                "headers": {}
+              },
+              "x-testShouldPass": true,
+              "x-testEnabled": true,
+              "x-testName": "Client Login",
+              "x-testDescription": "TODO: Add Description"
+            }
+          ],
+          "x-operation-settings": {
+            "CollectParameters": false,
+            "AllowDynamicQueryParameters": false,
+            "AllowDynamicFormParameters": false,
+            "IsMultiContentStreaming": false
+          }
+        }
+      },
+      "/accounts/signup": {
+        "post": {
+          "description": "TODO: Add Description",
+          "summary": "User Signup",
+          "tags": [
+            "Authorization"
+          ],
+          "operationId": "User Signup",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "Body",
+              "in": "body",
+              "required": true,
+              "description": "",
+              "schema": {
+                "$ref": "#/definitions/UserSignupRequest"
+              }
+            },
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "required": true,
+              "type": "string",
+              "description": ""
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": ""
+            }
+          },
+          "security": [],
+          "x-unitTests": [
+            {
+              "request": {
+                "method": "POST",
+                "uri": "/accounts/signup",
+                "headers": {
+                  "Content-Type": "application/json"
+                },
+                "body": {
+                    "email": "john.smith@gmail.com",
+                    "firstName": "John",
+                    "middleName": "",
+                    "lastName": "Smith",
+                    "password": "Abc123",
+                    "confirmPassword": "Abc123",
+                    "sex": "Male",
+                    "contactMethod": "Email",
+                    "city": "Los Angeles",
+                    "state": "California",
+                    "zipCode": "90001",
+                    "birthDate": "1998-03-11"
+                }
+              },
+              "expectedResponse": {
+                "x-allowExtraHeaders": true,
+                "x-bodyMatchMode": "NONE",
+                "x-arrayOrderedMatching": false,
+                "x-arrayCheckCount": false,
+                "x-matchResponseSchema": true,
+                "headers": {}
+              },
+              "x-testShouldPass": true,
+              "x-testEnabled": true,
+              "x-testName": "User Signup",
+              "x-testDescription": "TODO: Add Description"
+            }
+          ],
+          "x-operation-settings": {
+            "CollectParameters": false,
+            "AllowDynamicQueryParameters": false,
+            "AllowDynamicFormParameters": false,
+            "IsMultiContentStreaming": false
+          }
+        }
+      }
+    },
+    "definitions": {
+      "ClientLoginRequest": {
+        "title": "Client LoginRequest",
+        "type": "object",
+        "properties": {
+          "email": {
+            "description": "",
+            "type": "string"
+          },
+          "password": {
+            "description": "",
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ]
+      },
+      "UserSignupRequest": {
+        "title": "User - SignupRequest",
+        "type": "object",
+        "properties": {
+            "firstName": {
+                "description": "",
+                "type": "string"
+              },
+              "middleName": {
+                "description": "",
+                "type": "string"
+              },
+              "lastName": {
+                "description": "",
+                "type": "string"
+              },
+              "email": {
+                "description": "",
+                "type": "string"
+              },
+              "password": {
+                "description": "",
+                "type": "string",
+                "format": "password"
+              },
+              "confirmPassword": {
+                "description": "",
+                "type": "string",
+                "format": "password"
+              },
+              "zipCode": {
+                "description": "",
+                "type": "string"
+              },
+              "city": {
+                "description": "",
+                "type": "string"
+              },
+              "state": {
+                "description": "",
+                "type": "string"
+              },
+              "sex": {
+                "description": "",
+                "type": "string"
+              },
+              "contactMethod": {
+                "description": "",
+                "type": "string"
+              },
+              "birthDate": {
+                "description": "",
+                "type": "string",
+                "format": "date"
+            }
+        },
+        "required": [
+          "firstName",
+          "lastName",
+          "email",
+          "password",
+          "confirmPassword",
+          "sex",
+          "contactMethod",
+          "city",
+          "state",
+          "zipCode",
+          "birthDate"
+        ]
+      },
+      "User": {
+        "title": "User",
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "description": "",
+            "type": "string"
+          },
+          "middleName": {
+            "description": "",
+            "type": "string"
+          },
+          "lastName": {
+            "description": "",
+            "type": "string"
+          },
+          "email": {
+            "description": "",
+            "type": "string"
+          },
+          "password": {
+            "description": "",
+            "type": "string",
+            "format": "password"
+          },
+          "confirmPassword": {
+            "description": "",
+            "type": "string",
+            "format": "password"
+          },
+          "zipCode": {
+            "description": "",
+            "type": "string"
+          },
+          "city": {
+            "description": "",
+            "type": "string"
+          },
+          "state": {
+            "description": "",
+            "type": "string"
+          },
+          "sex": {
+            "description": "",
+            "type": "string"
+          },
+          "contactMethod": {
+            "description": "",
+            "type": "string"
+          },
+          "birthDate": {
+            "description": "",
+            "type": "string",
+            "format": "date"
+          }
+        },
+        "required": [
+          "firstName",
+          "lastName",
+          "email",
+          "password",
+          "confirmPassword",
+          "city",
+          "state",
+          "zipCode",
+          "contactMethod",
+          "sex"
+        ]
+      }
+    }
+  }
+  

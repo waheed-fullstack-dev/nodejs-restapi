@@ -14,7 +14,7 @@ export const validateUserSignupBody = [
     .normalizeEmail(),
     check('password','Password should have at least 6 characters, upper case, lower case and numbers.')
     .trim()
-    .matches([/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d$/*!@]{6,}$/]),
+    .matches(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d$/*!@]{6,}$/),
     check('confirmPassword')
     .trim()
     .custom(async (confirmPassword, {req}) => {
@@ -23,7 +23,7 @@ export const validateUserSignupBody = [
         throw new Error('Confirm Password should be same as password')
       }
     }),
-    check('birthDate', 'Please enter a valid date')
+    check('birthDate', 'Please enter a valid date in format YYYY-MM-DD')
     .isDate(),
     check('sex', 'Select your gender'),
     check('contactMethod', 'Please select a contact method'),

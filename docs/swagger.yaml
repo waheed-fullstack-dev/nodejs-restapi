@@ -1,0 +1,215 @@
+openapi: 3.0.0
+info:
+  title: Boilerplate RestApi,
+  description: A collection of API endpoints built for the Boilerplat RestApi Platform 3.0
+  version: 2.0.0
+servers:
+  - url: http://localhost:3090/api/v1
+    description: Local dev server
+components:
+  securitySchemes:
+    bearerAuth: 
+      type: http 
+      scheme: bearer 
+      bearerFormat: JWT
+  schemas:
+    Login:
+      type: object
+      properties:
+        email:  
+          type: string
+          format: email
+          example: johnsmith@gmail.com
+        password:
+          type: string
+          format: password
+          example: Admin123
+      required:
+        - email
+        - password
+    Signup:
+      type: object
+      properties:
+        firstName:
+          type: string
+        middleName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        birthDate:
+          type: string
+          format: date
+        sex:
+          type: string
+        contactMethod:
+          type: string
+        password:
+          type: string
+          format: password
+        confirmPassword:
+          type: string
+          format: password
+        city:
+          type: string
+        state:
+          type: string
+        zipCode:
+          type: integer
+      required:  
+        - firstName
+        - lastName
+        - email
+        - sex 
+        - password
+        - confirmPassword
+        - city
+        - state
+        - zipCode
+        - contactMethod
+      example: 
+        firstName: John
+        middleName: 
+        lastName: Smith
+        email: johnsmith@gmail.com
+        password: Admin123
+        confirmPassword: Admin123
+        city: Los Angeles
+        state: California(CA)
+        zipCode: 90001
+        birthDate: '1998-03-11'
+        sex: Male
+        contactMethod: Email
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        firstName:
+          type: string
+        middleName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        birthDate:
+          type: date
+        sex:
+          type: string
+        contactMethod:
+          type: string
+        password:
+          type: string
+          format: password
+        confirmPassword:
+          type: string
+          format: password
+        city:
+          type: string
+        state:
+          type: string
+        zipCode:
+          type: integer
+      example: 
+        id: 1
+        firstName: John
+        middleName: 
+        lastName: Smith
+        email: johnsmith@gmail.com
+        password: Admin123
+        confirmPassword: Admin123
+        city: Los Angeles
+        state: California(CA)
+        zipCode: 90001
+        birthDate: '1998-03-11'
+        sex: Male
+        contactMethod: Email
+paths:
+  /users:
+    get:
+      summary: Return a list of users
+      description: 
+      responses:
+        '200':
+          content:
+            application/json:
+              type: array
+              items:
+                type: object
+                $ref: '#/components/schemas/User'
+  /users/{userId}:
+    get:
+      summary: Return a user by id
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema: 
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              type: object
+              properties:
+                user:
+                  $ref: '#/components/schemas/User'
+  /auth/login:
+    post: 
+      summary: Login the user
+      description:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
+      responses:
+        '200':
+          description: 'Login successful' 
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user: 
+                    $ref: '#/components/schemas/User'
+                  token:
+                    type: string
+                    example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJzdXBlcmFkbWluQGFkbWluLmNvbSIsImlhdCI6MTY3MjA1OTA1OSwiZXhwIjoxNjcyMTQ1NDU5fQ.f7sNCzjWHwXCVW6-mG0owk72o1yrGC9LppPvLPn3jAE'
+  /auth/signup:
+    post:
+      summary: Creates a user.
+      description: 
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Signup'
+      responses:
+        '201': 
+          description: Created successfully
+          content:
+            application/json:
+              schema: 
+                type: object
+                properties:
+                  user:
+                    $ref: '#/components/schemas/User'
+                  token:
+                    type: string
+                    example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJzdXBlcmFkbWluQGFkbWluLmNvbSIsImlhdCI6MTY3MjA1OTA1OSwiZXhwIjoxNjcyMTQ1NDU5fQ.f7sNCzjWHwXCVW6-mG0owk72o1yrGC9LppPvLPn3jAE
+        '500':
+          description: Invalid request
+          content:
+            application/json:
+              schema: 
+                error: Invalid request object

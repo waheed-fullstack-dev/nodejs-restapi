@@ -1,6 +1,6 @@
 'use strict';
 const {
-  Model
+  Model, Sequelize
 } = require('sequelize');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;

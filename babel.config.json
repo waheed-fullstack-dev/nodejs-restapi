@@ -1,19 +1,9 @@
 {
-    "presets": ["es2015", "es2017", "stage-0"],
+    "presets": ["@babel/preset-env"],
   
     "plugins": [
-      "transform-runtime",
-      "add-module-exports",
-      "transform-decorators-legacy"
+      "@babel/plugin-transform-runtime"
     ],
-  
-    "env": {
-      "development": {
-        "plugins": [
-          "typecheck"
-        ]
-      }
-    },
   
     "sourceMaps": true,
     "retainLines": true
