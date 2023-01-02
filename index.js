@@ -1,24 +1,14 @@
 require('dotenv').config();
-require("@babel/register");
-
+require('babel-register');
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
 // Main starting point of the application
 const bodyParser = require('body-parser');
 const express = require('express');
-const expressValidator = require('express-validator');
 const http = require('http');
-const mailer = require('express-mailer');
 const morgan = require('morgan');
-const swaggerTools = require('swagger-tools');
 
 const app = express();
-
-const { NODE_ENV = 'development' } = process.env;
-
-const EventEmitter = require('events');
-class AppEmitter extends EventEmitter {}
-global.Emitter = new AppEmitter();
 
 // ────────────────────────────────────────────────────────────────────────────────
 // ADD CORS
@@ -37,16 +27,14 @@ app.use((req, res, next) => {
 // APP SETUP
 
 app.use(morgan(isDevelopment ? 'dev' : 'combined'));
-
-  
 app.use(bodyParser.json({ limit: '4mb' }));
 app.use(bodyParser.urlencoded({ limit: '4mb', extended: true }));
 
-app.use(
-    expressValidator({
-        customValidators: {
-            isDBUnique: validators.isDBUnique,
-            existsInDB: validators.existsInDB,
-        },
-    })
-);
+
+
+// Server Setup
+const port = process.env.PORT || 3090;
+const server = http.createServer(app);
+server.listen(port, () => {
+  console.log('Server listening on: ', port);
+});
