@@ -1,5 +1,4 @@
 const { check, validationResult } = require('express-validator');
-const model = require("../database/models");
 
 const validateSignupBody = [
     check('firstName', 'First Name should be at least 3 characters')

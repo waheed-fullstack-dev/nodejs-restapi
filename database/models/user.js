@@ -96,13 +96,22 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
+    password: {
+      type: DataTypes.VIRTUAL,
+      allowNull: false,
+    },
     resetPasswordKey: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    jwtToken: {
       type: DataTypes.STRING,
       allowNull: true,
     },
     verified: {
       type: DataTypes.BOOLEAN,
       allowNull: true,
+      defaultValue: true
     }
   }, {
     hooks: {
@@ -111,10 +120,16 @@ module.exports = (sequelize, DataTypes) => {
           const salt = bcrypt.genSaltSync(saltRounds);
           const hash = bcrypt.hashSync(user.password, salt);
           user.hashPassword = hash;
+          user.salt = salt;
         }
       },
       afterUpdate: (user, options) => {
-        user.middleName = 'Al-Karam';
+        if(user.password){
+          const salt = bcrypt.genSaltSync(saltRounds);
+          const hash = bcrypt.hashSync(user.password, salt);
+          user.hashPassword = hash;
+          user.salt = salt;
+        }
       }
     },
     indexes: [

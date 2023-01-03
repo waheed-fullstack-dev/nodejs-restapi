@@ -46,7 +46,7 @@ module.exports = {
       },
       salt: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
       },
       avatar: {
         type: Sequelize.STRING,
@@ -58,14 +58,14 @@ module.exports = {
       },
       phone: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
         validate: {
           isPhone: true
         }
       },
       address: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
       },
       city: {
         type: Sequelize.STRING,
@@ -98,6 +98,7 @@ module.exports = {
       verified: {
         type: Sequelize.BOOLEAN,
         default: true,
+        defaultValue: true,
       },
       createdAt: {
         allowNull: false,
