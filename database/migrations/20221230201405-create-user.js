@@ -1,6 +1,6 @@
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
-const constants = require('../../constants/index.js');
+const constants = require('../../constants');
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Users', {
@@ -50,11 +50,11 @@ module.exports = {
       },
       avatar: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
       },
       hashPassword: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
       },
       phone: {
         type: Sequelize.STRING,

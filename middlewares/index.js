@@ -1,7 +1,7 @@
-import { check, validationResult } from 'express-validator';
+const { check, validationResult } = require('express-validator');
 const model = require("../database/models");
 
-export const validateUserSignupBody = [
+const validateSignupBody = [
     check('firstName', 'First Name should be at least 3 characters')
     .trim()
     .isLength({min: 3, max: 30}),
@@ -42,7 +42,7 @@ export const validateUserSignupBody = [
     .isInt
 ]
 
-export const checkEmail = (req, res, next) => {
+const checkEmail = (req, res, next) => {
     try {
         const errors = validationResult(req);
         if (!errors.isEmpty()){
@@ -64,4 +64,9 @@ export const checkEmail = (req, res, next) => {
         console.log(error)
         return res.status(409).json({error: error.message, meta: error});
     }
+}
+
+module.exports = {
+    validateSignupBody,
+    checkEmail
 }

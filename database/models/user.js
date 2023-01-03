@@ -4,7 +4,7 @@ const {
 } = require('sequelize');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-const constants = require('../../constants/index.js');
+const constants = require('../../constants');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -74,11 +74,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     avatar: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     hashPassword: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     sex: {
       type: new Sequelize.ENUM(Object.keys(constants.SEX_TYPES)),

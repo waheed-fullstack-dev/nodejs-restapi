@@ -1,10 +1,9 @@
-import swaggerUi from 'swagger-ui-express';
-import YAML from 'yamljs';
-
+const swaggerUi =  require('swagger-ui-express');
+const YAML = require('yamljs');
 const swaggerDoc = YAML.load('./docs/swagger.yaml');
 const docsUrl = '/api/v1/docs';
 
-export function swaggerDocs(app, port) {
+function swaggerDocs(app, port) {
   // Swagger pages
   app.use(docsUrl, swaggerUi.serve, swaggerUi.setup(swaggerDoc));
   // Docs in JSON format
@@ -13,4 +12,8 @@ export function swaggerDocs(app, port) {
     res.send(swaggerDoc);
   });
   console.log(`Docs available at http://localhost:${port}${docsUrl}`);
+}
+
+module.exports = {
+  swaggerDocs
 }

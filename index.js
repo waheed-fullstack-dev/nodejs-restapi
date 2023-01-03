@@ -1,6 +1,5 @@
 require('dotenv').config();
 const isDevelopment = process.env.NODE_ENV !== 'production';
-
 // Main starting point of the application
 const bodyParser = require('body-parser');
 const express = require('express');
@@ -9,9 +8,8 @@ const morgan = require('morgan');
 const swaggerTools = require('swagger-tools');
 const { swaggerDocs } = require('./utils/swagger');
 const swaggerDoc = require('./docs/swagger.json');
-import v1 from './controllers/v1';
-
 const app = express();
+const routes = require('./routes');
 
 // ────────────────────────────────────────────────────────────────────────────────
 // ADD CORS
@@ -34,11 +32,11 @@ app.use(bodyParser.json({ limit: '4mb' }));
 app.use(bodyParser.urlencoded({ limit: '4mb', extended: true }));
 
 // Routing to the v1
-app.use('api/v1', v1);
+app.use('/api/v1', routes);
 
 // Swagger
 const options = {
-  controllers: ['./controllers/v1'],
+  controllers: ['./routes'],
   useStubs:
     process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test',
 };

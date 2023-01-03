@@ -1,10 +1,9 @@
 // ────────────────────────────────────────────────────────────────────────────────
 // MODULES
-
-import passport from 'passport';
-import { ExtractJwt, Strategy as JwtStrategy } from 'passport-jwt';
-
-import db from '../database/models';
+const passport = require('passport');
+const JwtStrategy = require('passport-jwt').Strategy;
+const ExtractJwt = require('passport-jwt').ExtractJwt;
+const db  = require('../database/models');
 
 // ────────────────────────────────────────────────────────────────────────────────
 // PASSPORT

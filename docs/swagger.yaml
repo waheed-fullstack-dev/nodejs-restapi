@@ -6,6 +6,11 @@ info:
 servers:
   - url: http://localhost:3090/api/v1
     description: Local dev server
+tags:
+  - name: Authorization
+    description: Authentication collection
+  - name: 'Users'
+    description: Users collection
 components:
   securitySchemes:
     bearerAuth: 
@@ -129,40 +134,10 @@ components:
         sex: Male
         contactMethod: Email
 paths:
-  /users:
-    get:
-      summary: Return a list of users
-      description: 
-      responses:
-        '200':
-          content:
-            application/json:
-              type: array
-              items:
-                type: object
-                $ref: '#/components/schemas/User'
-  /users/{userId}:
-    get:
-      summary: Return a user by id
-      parameters:
-        - name: userId
-          in: path
-          required: true
-          schema: 
-            type: integer
-            format: int64
-            minimum: 1
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              type: object
-              properties:
-                user:
-                  $ref: '#/components/schemas/User'
   /auth/login:
-    post: 
+    post:
+      tags: 
+        - Authorization
       summary: Login the user
       description:
       requestBody:
@@ -186,6 +161,8 @@ paths:
                     example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJzdXBlcmFkbWluQGFkbWluLmNvbSIsImlhdCI6MTY3MjA1OTA1OSwiZXhwIjoxNjcyMTQ1NDU5fQ.f7sNCzjWHwXCVW6-mG0owk72o1yrGC9LppPvLPn3jAE'
   /auth/signup:
     post:
+      tags: 
+        - Authorization
       summary: Creates a user.
       description: 
       requestBody:
@@ -213,3 +190,39 @@ paths:
             application/json:
               schema: 
                 error: Invalid request object
+  /users:
+    get:
+      tags: 
+        - Users
+      summary: Return a list of users
+      description: 
+      responses:
+        '200':
+          content:
+            application/json:
+              type: array
+              items:
+                type: object
+                $ref: '#/components/schemas/User'
+  /users/{userId}:
+    get:
+      tags: 
+        - Users
+      summary: Return a user by id
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema: 
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              type: object
+              properties:
+                user:
+                  $ref: '#/components/schemas/User'
