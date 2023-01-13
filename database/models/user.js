@@ -20,14 +20,27 @@ module.exports = (sequelize, DataTypes) => {
         as: 'phoneNumbers',
         allowNull: true,
       });
+      
       User.hasOne(models.Phone, {
         foreignKey: 'userId',
-        as: 'phoneNumber',
+        as: 'phone',
+        allowNull: true,
+      });
+
+      User.hasMany(models.Address, {
+        foreignKey: 'userId',
+        as: 'address',
+        allowNull: true,
+      });
+
+      User.hasOne(models.Address, {
+        foreignKey: 'userId',
+        as: 'userAddress',
         allowNull: true,
       });
     }
 
-    validPassword(password) {
+    validatePassword(password) {
       return bcrypt.compareSync(password, this.hashPassword);
     }
   }
@@ -80,7 +93,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    sex: {
+    gender: {
       type: new Sequelize.ENUM(Object.keys(constants.SEX_TYPES)),
       allowNull: false
     },

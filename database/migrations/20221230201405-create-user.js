@@ -56,17 +56,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true
       },
-      phone: {
-        type: Sequelize.STRING,
-        allowNull: true,
-        validate: {
-          isPhone: true
-        }
-      },
-      address: {
-        type: Sequelize.STRING,
-        allowNull: true
-      },
       city: {
         type: Sequelize.STRING,
         allowNull: false
@@ -79,7 +68,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      sex: {
+      gender: {
         type: new Sequelize.ENUM(Object.keys(constants.SEX_TYPES)),
         allowNull: false
       },

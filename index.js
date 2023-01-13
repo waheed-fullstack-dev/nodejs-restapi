@@ -41,7 +41,7 @@ const options = {
     process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test',
 };
 if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
-  const port = process.env.PORT || 3090;
+  const port = process.env.PORT || 8080;
 
   // Initialize the Swagger middleware
   swaggerTools.initializeMiddleware(swaggerDoc, (middleware) => {
@@ -61,6 +61,7 @@ if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
     app.use((err, req, res, next) => {
       res.status(err.statusCode || 500);
       res.json({
+        success: false,
         errors: err.errors,
         meta: {
           code: err.statusCode,

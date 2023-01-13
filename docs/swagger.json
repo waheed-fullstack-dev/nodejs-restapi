@@ -5,7 +5,7 @@
       "title": "Boilerplate RestApi",
       "description": "A collection of API endpoints built for the Boilerplate API"
     },
-    "host": "localhost:3090",
+    "host": "localhost:8080",
     "basePath": "/api/v1",
     "schemes": [
       "http"
@@ -17,7 +17,7 @@
       "application/json"
     ],
     "paths": {
-      "/auth/login": {
+      "/auth/signin": {
         "post": {
           "description": "Client login request",
           "summary": "Client Login",
@@ -56,7 +56,7 @@
             {
               "request": {
                 "method": "POST",
-                "uri": "/auth/login",
+                "uri": "/auth/signin",
                 "headers": {
                   "Content-Type": "application/json"
                 },
@@ -134,8 +134,8 @@
                     "lastName": "Smith",
                     "password": "Abc123",
                     "confirmPassword": "Abc123",
-                    "sex": "Male",
-                    "contactMethod": "Email",
+                    "gender": "M",
+                    "contactMethod": "email",
                     "city": "Los Angeles",
                     "state": "California",
                     "zipCode": "90001",
@@ -189,56 +189,56 @@
         "type": "object",
         "properties": {
             "firstName": {
-                "description": "",
-                "type": "string"
-              },
-              "middleName": {
-                "description": "",
-                "type": "string"
-              },
-              "lastName": {
-                "description": "",
-                "type": "string"
-              },
-              "email": {
-                "description": "",
-                "type": "string"
-              },
-              "password": {
-                "description": "",
-                "type": "string",
-                "format": "password"
-              },
-              "confirmPassword": {
-                "description": "",
-                "type": "string",
-                "format": "password"
-              },
-              "zipCode": {
-                "description": "",
-                "type": "string"
-              },
-              "city": {
-                "description": "",
-                "type": "string"
-              },
-              "state": {
-                "description": "",
-                "type": "string"
-              },
-              "sex": {
-                "description": "",
-                "type": "string"
-              },
-              "contactMethod": {
-                "description": "",
-                "type": "string"
-              },
-              "birthDate": {
-                "description": "",
-                "type": "string",
-                "format": "date"
-            }
+              "description": "",
+              "type": "string"
+            },
+            "middleName": {
+              "description": "",
+              "type": "string"
+            },
+            "lastName": {
+              "description": "",
+              "type": "string"
+            },
+            "email": {
+              "description": "",
+              "type": "string"
+            },
+            "password": {
+              "description": "",
+              "type": "string",
+              "format": "password"
+            },
+            "confirmPassword": {
+              "description": "",
+              "type": "string",
+              "format": "password"
+            },
+            "zipCode": {
+              "description": "",
+              "type": "string"
+            },
+            "city": {
+              "description": "",
+              "type": "string"
+            },
+            "state": {
+              "description": "",
+              "type": "string"
+            },
+            "gender": {
+              "description": "",
+              "type": "string"
+            },
+            "contactMethod": {
+              "description": "",
+              "type": "string"
+            },
+            "birthDate": {
+              "description": "",
+              "type": "string",
+              "format": "date"
+          }
         },
         "required": [
           "firstName",
@@ -246,7 +246,7 @@
           "email",
           "password",
           "confirmPassword",
-          "sex",
+          "gender",
           "contactMethod",
           "city",
           "state",
@@ -296,7 +296,7 @@
             "description": "",
             "type": "string"
           },
-          "sex": {
+          "gender": {
             "description": "",
             "type": "string"
           },
@@ -320,7 +320,8 @@
           "state",
           "zipCode",
           "contactMethod",
-          "sex"
+          "birthDate",
+          "gender"
         ]
       }
     }
